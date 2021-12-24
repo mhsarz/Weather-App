@@ -1,0 +1,96 @@
+body {
+  background: #eee;
+}
+.container {
+  margin: 3% auto;
+  border-radius: 10px;
+}
+
+.mainInformation li,
+.otherInformation,
+.card-body .card-text {
+  font-size: 25px;
+}
+
+.mainInformation li {
+  font-weight: 600;
+}
+
+
+
+.mainInformation {
+  padding: 60px;
+  border-radius: 10px 0 0 10px;
+  font-family: "Titillium Web", sans-serif;
+  min-height: 600px;
+  color: black;
+  background: url("/img/City\ Art.jpg");
+  background-position: center;
+}
+
+.otherInformation {
+  background: url("/img/bg.jpg");
+  padding-top: 25px;
+  min-height: 600px;
+  border-radius: 0 10px 10px 0;
+  background-size: cover;
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+}
+
+#temperature,
+#city-name {
+  font-weight: 700;
+  font-size: 50px;
+}
+
+/*cards*/
+
+.sevenDays {
+  margin-top: 40%;
+}
+
+.card-title {
+  text-align: center;
+  font-family: "Share Tech Mono", monospace;
+  font-weight: 900;
+}
+
+.card-text .fa-sun-o {
+  color: rgb(223, 223, 49);
+  font-weight: bolder;
+}
+
+.card-body .card-text {
+  text-align: center;
+  font-weight: 100;
+  font-family: "Share Tech Mono", monospace !important;
+}
+
+.card-text .fa-cloud-sun {
+  color: rgb(130, 130, 214);
+}
+
+.card-text .fa-cloud-rain {
+  color: darkblue;
+}
+
+.card-text .fa-cloud-sun-rain {
+  color: darkcyan;
+}
+
+.CorF a {
+  text-decoration: none;
+  font-size: 20px;
+}
+
+.degreeHighlight {
+  color: purple;
+}
+
+.degreeUnhighlithed {
+  color: blue;
+}
