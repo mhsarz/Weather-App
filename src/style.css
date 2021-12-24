@@ -94,3 +94,8 @@ ul {
 .degreeUnhighlithed {
   color: blue;
 }
+
+/*////////////////*/
+span a{
+  text-decoration: none;
+}
