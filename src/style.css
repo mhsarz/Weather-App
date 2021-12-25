@@ -16,8 +16,6 @@ body {
   font-weight: 600;
 }
 
-
-
 .mainInformation {
   padding: 60px;
   border-radius: 10px 0 0 10px;
@@ -82,20 +80,22 @@ ul {
   color: darkcyan;
 }
 
-.CorF a {
-  text-decoration: none;
-  font-size: 20px;
-}
-
-.degreeHighlight {
-  color: purple;
-}
-
-.degreeUnhighlithed {
-  color: blue;
-}
-
 /*////////////////*/
 span a{
   text-decoration: none;
+}
+
+/*/ /////////*/
+.units {
+  font-size: 20px;
+  font-weight: normal;
+  position: relative;
+  top: -20px;
+}
+
+.unitChosen {
+  color: purple;
+}
+.unitUnchosen {
+  color: blue;
 }
