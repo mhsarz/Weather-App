@@ -67,7 +67,7 @@ function showTemp(response) {
   let nowDescription = document.querySelector("#description");
   let temp = Math.round(response.data.main.temp);
   let searchedCity = document.querySelector("#search-city");
-  let city = searchedCity.value.toUpperCase();
+  let city = searchedCity.value;
   let description = response.data.weather[0].description;
   nowCity.innerHTML = city;
   nowTemp.innerHTML = temp;

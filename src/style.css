@@ -1,5 +1,6 @@
 body {
   background: #eee;
+  text-transform: capitalize;
 }
 .container {
   margin: 3% auto;
@@ -14,6 +15,7 @@ body {
 
 .mainInformation li {
   font-weight: 600;
+  text-transform: capitalize;
 }
 
 .mainInformation {
