@@ -1,20 +1,32 @@
-
-////// Default
 let apiKey = "6782ca0af433d6f05f5bb7d1e4746371";
 
-function showTempDef(response) {
-  let nowTemp = document.querySelector("#tempNum");
-  let temp = Math.round(response.data.main.temp);
-  nowTemp.innerHTML = temp;
-  let nowDescription = document.querySelector("#description");
-  let description = response.data.weather[0].description;
-  nowDescription.innerHTML = description;
+function showTemp(response) {
+  let cityElement = document.querySelector("#city-name");
+  let tempElement = document.querySelector("#tempNum");
+  let descriptionElement = document.querySelector("#description");
+
+  tempElement.innerHTML = Math.round(response.data.main.temp);
+  cityElement.innerHTML = response.data.name;
+  descriptionElement.innerHTML = response.data.weather[0].description;
 }
 
-let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=TEHRAN&units=metric&appid=${apiKey}`;
-axios.get(apiUrl).then(showTempDef);
+let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=Tehran&units=metric&appid=${apiKey}`;
+axios.get(apiUrl).then(showTemp);
+
+
+function changeCity(event) {
+  event.preventDefault();
+  let searchedCity = document.querySelector("#search-city");
+
+  let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${searchedCity.value}&units=metric&appid=${apiKey}`;
+  axios.get(apiUrl).then(showTemp);
+}
+
+let searchForm = document.querySelector("#search-engine");
+searchForm.addEventListener("submit", changeCity);
 
 ////// DATE AND TIME//////
+
 function changeTime(time) {
   let hour = time.getHours();
   let minute = time.getMinutes();
@@ -62,30 +74,4 @@ changeTime(now);
 
 /////////////////
 
-function showTemp(response) {
-  let nowCity = document.querySelector("#city-name");
-  let nowTemp = document.querySelector("#tempNum");
-  let nowDescription = document.querySelector("#description");
-  let temp = Math.round(response.data.main.temp);
-  let searchedCity = document.querySelector("#search-city");
-  
-  let city = searchedCity.value;
-  let description = response.data.weather[0].description;
-  nowCity.innerHTML = city;
-  nowTemp.innerHTML = temp;
-  nowDescription.innerHTML = description;
-}
-
-function changeCity(event) {
-  event.preventDefault();
-  let searchedCity = document.querySelector("#search-city");
-  let city = searchedCity.value;
-  let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=${apiKey}`;
-  axios.get(apiUrl).then(showTemp);
-}
-
-let searchForm = document.querySelector("#search-engine");
-searchForm.addEventListener("submit", changeCity);
-
-//////////////
 
