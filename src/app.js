@@ -1,23 +1,24 @@
+
 ////// Default
 let apiKey = "6782ca0af433d6f05f5bb7d1e4746371";
 
-function formatTime(timestamp) {
-  let date = new Date(timestamp * 1000);
-  let hour = date.getHours();
-  let minute = date.getMinutes();
-  console.log(timestamp);
-  if (hour < 10) {
-    hour = `0${hour}`;
-  }
-  if (minute < 10) {
-    minute = `0${minute}`;
-  }
-  return `${hour}:${minute}`;
+function showTempDef(response) {
+  let nowTemp = document.querySelector("#tempNum");
+  let temp = Math.round(response.data.main.temp);
+  nowTemp.innerHTML = temp;
+  let nowDescription = document.querySelector("#description");
+  let description = response.data.weather[0].description;
+  nowDescription.innerHTML = description;
 }
 
-function formatWeek(timestamp) {
-  let date = new Date(timestamp * 1000);
-  let days = [
+let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=TEHRAN&units=metric&appid=${apiKey}`;
+axios.get(apiUrl).then(showTempDef);
+
+////// DATE AND TIME//////
+function changeTime(time) {
+  let hour = time.getHours();
+  let minute = time.getMinutes();
+  let weekdays = [
     "Sunday",
     "Monday",
     "Tuesday",
@@ -26,12 +27,7 @@ function formatWeek(timestamp) {
     "Friday",
     "Saturday",
   ];
-  return days[date.getDay()];
-}
-
-function formatYear(timestamp) {
-  let date = new Date(timestamp * 1000);
-  let year = date.getFullYear();
+  let weekday = weekdays[time.getDay()];
   let months = [
     "Jan",
     "Feb",
@@ -46,46 +42,38 @@ function formatYear(timestamp) {
     "Nov",
     "Dec",
   ];
-  let month = months[date.getMonth()];
-  let day = date.getDate();
+  let month = months[time.getMonth()];
+  let day = time.getDate();
+  let year = time.getFullYear();
+  let htmlMonth = document.querySelector("#current-date");
+  let htmlTime = document.querySelector("#time");
+  let htmlWeekDay = document.querySelector("#week-day");
+  if (minute >= 10) {
+    htmlTime.innerHTML = `${hour}:${minute}`;
+  } else {
+    htmlTime.innerHTML = `${hour}:0${minute}`;
+  }
 
-  return `${day} ${month} ${year}`;
+  htmlWeekDay.innerHTML = weekday;
+  htmlMonth.innerHTML = `${day} ${month} ${year}`;
 }
-
-function showTempDef(response) {
-  let tempertureElement = document.querySelector("#tempNum");
-  let descriptionElement = document.querySelector("#description");
-  let timeElement = document.querySelector("#time");
-  let weekdayElememt = document.querySelector("#week-day");
-  let yearElement = document.querySelector("#current-date");
-  weekdayElememt.innerHTML = formatWeek(response.data.dt);
-  yearElement.innerHTML = formatYear(response.data.dt);
-  timeElement.innerHTML = formatTime(response.data.dt);
-  tempertureElement.innerHTML = Math.round(response.data.main.temp);
-  descriptionElement.innerHTML = response.data.weather[0].description;
-}
-
-let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=TEHRAN&units=metric&appid=${apiKey}`;
-axios.get(apiUrl).then(showTempDef);
-
-////// DATE AND TIME//////
+let now = new Date();
+changeTime(now);
 
 /////////////////
 
 function showTemp(response) {
-  let cityElement = document.querySelector("#city-name");
+  let nowCity = document.querySelector("#city-name");
+  let nowTemp = document.querySelector("#tempNum");
+  let nowDescription = document.querySelector("#description");
+  let temp = Math.round(response.data.main.temp);
   let searchedCity = document.querySelector("#search-city");
-  cityElement.innerHTML = searchedCity.value;
-  let tempertureElement = document.querySelector("#tempNum");
-  let descriptionElement = document.querySelector("#description");
-  let timeElement = document.querySelector("#time");
-  let weekdayElememt = document.querySelector("#week-day");
-  let yearElement = document.querySelector("#current-date");
-  weekdayElememt.innerHTML = formatWeek(response.data.dt);
-  yearElement.innerHTML = formatYear(response.data.dt);
-  timeElement.innerHTML = formatTime(response.data.dt);
-  tempertureElement.innerHTML = Math.round(response.data.main.temp);
-  descriptionElement.innerHTML = response.data.weather[0].description;
+  
+  let city = searchedCity.value;
+  let description = response.data.weather[0].description;
+  nowCity.innerHTML = city;
+  nowTemp.innerHTML = temp;
+  nowDescription.innerHTML = description;
 }
 
 function changeCity(event) {
@@ -100,3 +88,4 @@ let searchForm = document.querySelector("#search-engine");
 searchForm.addEventListener("submit", changeCity);
 
 //////////////
+
