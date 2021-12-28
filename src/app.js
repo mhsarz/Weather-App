@@ -55,29 +55,27 @@ function showTemp(response) {
   cityElement.innerHTML = response.data.name;
   descriptionElement.innerHTML = response.data.weather[0].description;
 
+  //adding the searched city
   let d = new Date();
   let localTime = d.getTime();
   let localOffset = d.getTimezoneOffset() * 60000;
   let utc = localTime + localOffset;
   let nDate = new Date(utc + 1000 * response.data.timezone);
-
   changeTime(nDate);
 }
 
-let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=Tehran&units=metric&appid=${apiKey}`;
-axios.get(apiUrl).then(showTemp);
-
-function changeCity(event) {
-  event.preventDefault();
-  let searchedCity = document.querySelector("#search-city");
-
-  let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${searchedCity.value}&units=metric&appid=${apiKey}`;
+function searchedCity(city) {
+  let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=${apiKey}`;
   axios.get(apiUrl).then(showTemp);
 }
 
+function changeCity(event) {
+  event.preventDefault();
+  let searched = document.querySelector("#search-city");
+  searchedCity(searched.value);
+}
+
+searchedCity("tehran");
 let searchForm = document.querySelector("#search-engine");
 searchForm.addEventListener("submit", changeCity);
 
-////// DATE AND TIME//////
-
-/////////////////
