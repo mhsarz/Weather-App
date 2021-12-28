@@ -8,6 +8,14 @@ function showTemp(response) {
   tempElement.innerHTML = Math.round(response.data.main.temp);
   cityElement.innerHTML = response.data.name;
   descriptionElement.innerHTML = response.data.weather[0].description;
+
+  let d = new Date();
+  let localTime = d.getTime();
+  let localOffset = d.getTimezoneOffset() * 60000;
+  let utc = localTime + localOffset;
+  let nDate = new Date(utc + 1000 * response.data.timezone);
+
+  changeTime(nDate);
 }
 
 let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=Tehran&units=metric&appid=${apiKey}`;
