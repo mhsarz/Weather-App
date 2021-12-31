@@ -86,7 +86,11 @@ function showTemp(response) {
   descriptionElement.innerHTML = response.data.weather[0].description;
   humidityElement.innerHTML = response.data.main.humidity;
   windElement.innerHTML = `${Math.round(response.data.wind.speed)} km/h`;
-  
+  iconElement.setAttribute(
+    "src",
+    `http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`
+  );
+  icon.setAttribute("alt", response.data.main.description);
   //adding the searched city
   let d = new Date();
   let localTime = d.getTime();
