@@ -102,3 +102,7 @@ span a{
 .active {
   color : black !important;
 }
+
+#wind-speed{
+  text-transform: lowercase;
+}

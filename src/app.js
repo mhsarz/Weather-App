@@ -76,12 +76,17 @@ function showTemp(response) {
   let cityElement = document.querySelector("#city-name");
   let tempElement = document.querySelector("#tempNum");
   let descriptionElement = document.querySelector("#description");
+  let humidityElement = document.querySelector("#humidity");
+  let windElement = document.querySelector("#wind-speed");
+  let iconElement = document.querySelector("#icon");
   celTemp = response.data.main.temp;
   
   tempElement.innerHTML = Math.round(celTemp);
   cityElement.innerHTML = response.data.name;
   descriptionElement.innerHTML = response.data.weather[0].description;
-
+  humidityElement.innerHTML = response.data.main.humidity;
+  windElement.innerHTML = `${Math.round(response.data.wind.speed)} km/h`;
+  
   //adding the searched city
   let d = new Date();
   let localTime = d.getTime();
