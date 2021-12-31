@@ -1,5 +1,31 @@
 let apiKey = "6782ca0af433d6f05f5bb7d1e4746371";
 
+//changing to C or F
+
+function changeToCelsius(event) {
+  event.preventDefault();
+  celsiusLink.classList.add("active");
+  fahrenheitLink.classList.remove("active");
+  let temperatureElement = document.querySelector("#tempNum");
+  temperatureElement.innerHTML = Math.round(celTemp);
+}
+
+function changeToFahrenheit(event) {
+  event.preventDefault();
+  fahrenheitLink.classList.add("active");
+  celsiusLink.classList.remove("active");
+  let temperatureElement = document.querySelector("#tempNum");
+  temperatureElement.innerHTML = Math.round(celTemp * 1.8 + 32);
+}
+
+let celsiusLink = document.querySelector("#celsius");
+let fahrenheitLink = document.querySelector("#fahrenheit");
+
+celsiusLink.addEventListener("click", changeToCelsius);
+fahrenheitLink.addEventListener("click", changeToFahrenheit);
+
+/////
+
 function changeTime(time) {
   let hour = time.getHours();
   let minute = time.getMinutes();
@@ -50,8 +76,9 @@ function showTemp(response) {
   let cityElement = document.querySelector("#city-name");
   let tempElement = document.querySelector("#tempNum");
   let descriptionElement = document.querySelector("#description");
-
-  tempElement.innerHTML = Math.round(response.data.main.temp);
+  celTemp = response.data.main.temp;
+  
+  tempElement.innerHTML = Math.round(celTemp);
   cityElement.innerHTML = response.data.name;
   descriptionElement.innerHTML = response.data.weather[0].description;
 
@@ -74,8 +101,8 @@ function changeCity(event) {
   let searched = document.querySelector("#search-city");
   searchedCity(searched.value);
 }
+let celTemp = null;
 
 searchedCity("tehran");
 let searchForm = document.querySelector("#search-engine");
 searchForm.addEventListener("submit", changeCity);
-

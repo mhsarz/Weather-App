@@ -95,9 +95,10 @@ span a{
   top: -20px;
 }
 
-.unitChosen {
-  color: purple;
-}
-.unitUnchosen {
+.units a{
   color: blue;
+}
+
+.active {
+  color : black !important;
 }
