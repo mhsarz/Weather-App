@@ -80,7 +80,7 @@ function showTemp(response) {
   let windElement = document.querySelector("#wind-speed");
   let iconElement = document.querySelector("#icon");
   celTemp = response.data.main.temp;
-  
+
   tempElement.innerHTML = Math.round(celTemp);
   cityElement.innerHTML = response.data.name;
   descriptionElement.innerHTML = response.data.weather[0].description;
@@ -98,6 +98,8 @@ function showTemp(response) {
   let utc = localTime + localOffset;
   let nDate = new Date(utc + 1000 * response.data.timezone);
   changeTime(nDate);
+  celsiusLink.classList.add("active");
+  fahrenheitLink.classList.remove("active");
 }
 
 function searchedCity(city) {
