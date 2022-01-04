@@ -1,6 +1,4 @@
 let apiKey = "6782ca0af433d6f05f5bb7d1e4746371";
-
-
 /////
 
 function changeTime(time) {
@@ -65,7 +63,7 @@ function displayForecast(response) {
   let forecastHTML = `<div class="row">`;
 
   forecast.forEach(function (forecastDay, index) {
-    if (index < 5) {
+    if (index < 6 && index > 0) {
       forecastHTML =
         forecastHTML +
         ` <div class="col">
