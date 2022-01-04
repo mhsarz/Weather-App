@@ -72,28 +72,49 @@ function changeTime(time) {
   monthElement.innerHTML = `${day} ${month} ${year}`;
 }
 
+function formatDay(timestamp) {
+  let date = new Date(timestamp * 1000);
+  let day = date.getDay();
+  let days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+
+  return days[day];
+}
+
 function displayForecast(response) {
+  let forecast = response.data.daily;
+
   let forecastElement = document.querySelector("#forecast");
+
   let forecastHTML = `<div class="row">`;
-  let days = ["Wed", "Thu", "Fri", "Sat", "Sun"];
-  days.forEach(function (day) {
-    forecastHTML =
-      forecastHTML +
-      ` <div class="col">
-          <div class="card">              <div class="card-body">
-              <h5 class="card-title">${day}</h5>
-              <p class="card-text"><i class="fas fa-snowflake"></i> -3°C</p>
+
+  forecast.forEach(function (forecastDay, index) {
+    if (index < 5) {
+      forecastHTML =
+        forecastHTML +
+        ` <div class="col">
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title">${formatDay(forecastDay.dt)}</h5>
+              <p class="card-text">
+              <img
+                src="http://openweathermap.org/img/wn/${
+                  forecastDay.weather[0].icon
+                }@2x.png"
+                alt=""
+              />
+               ${Math.round(forecastDay.temp.day)}°C</p>
             </div>
           </div>
         </div>`;
+    }
   });
   forecastHTML = forecastHTML + `</div>`;
   forecastElement.innerHTML = forecastHTML;
 }
 
 function getForecast(coordinates) {
-   let apiUrl = `https://api.openweathermap.org/data/2.5/onecall?lat=${coordinates.lat}&lon=${coordinates.lon}&appid=${apiKey}&units=metric`;
-   axios.get(apiUrl).then(displayForecast);
+  let apiUrl = `https://api.openweathermap.org/data/2.5/onecall?lat=${coordinates.lat}&lon=${coordinates.lon}&appid=${apiKey}&units=metric`;
+  axios.get(apiUrl).then(displayForecast);
 }
 
 function showTemp(response) {
@@ -143,7 +164,3 @@ let celTemp = null;
 searchedCity("tehran");
 let searchForm = document.querySelector("#search-engine");
 searchForm.addEventListener("submit", changeCity);
-
-
-
-

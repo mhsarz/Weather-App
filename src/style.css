@@ -59,27 +59,18 @@ ul {
   font-weight: 900;
 }
 
-.card-text .fa-sun-o {
-  color: rgb(223, 223, 49);
-  font-weight: bolder;
-}
-
 .card-body .card-text {
   text-align: center;
   font-weight: 100;
   font-family: "Share Tech Mono", monospace !important;
 }
 
-.card-text .fa-cloud-sun {
-  color: rgb(130, 130, 214);
+.card-body img {
+  width: 50px;
 }
 
-.card-text .fa-cloud-rain {
-  color: darkblue;
-}
-
-.card-text .fa-cloud-sun-rain {
-  color: darkcyan;
+.card-body{
+  background-color: rgb(207, 207, 207);
 }
 
 /*////////////////*/
