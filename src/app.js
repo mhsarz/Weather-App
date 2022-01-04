@@ -117,3 +117,23 @@ let celTemp = null;
 searchedCity("tehran");
 let searchForm = document.querySelector("#search-engine");
 searchForm.addEventListener("submit", changeCity);
+
+function displayForecast() {
+  let forecastElement = document.querySelector("#forecast");
+  let forecastHTML = `<div class="row">`;
+  let days = ["Wed", "Thu", "Fri", "Sat", "Sun"];
+  days.forEach(function (day) {
+    forecastHTML =
+      forecastHTML +
+      ` <div class="col">
+          <div class="card">              <div class="card-body">
+              <h5 class="card-title">${day}</h5>
+              <p class="card-text"><i class="fas fa-snowflake"></i> -3°C</p>
+            </div>
+          </div>
+        </div>`;
+  });
+  forecastHTML = forecastHTML + `</div>`;
+  forecastElement.innerHTML = forecastHTML;
+}
+displayForecast();
