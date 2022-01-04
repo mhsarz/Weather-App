@@ -79,20 +79,6 @@ span a{
 }
 
 /*/ /////////*/
-.units {
-  font-size: 20px;
-  font-weight: normal;
-  position: relative;
-  top: -20px;
-}
-
-.units a{
-  color: blue;
-}
-
-.active {
-  color : black !important;
-}
 
 #wind-speed{
   text-transform: lowercase;

@@ -1,28 +1,5 @@
 let apiKey = "6782ca0af433d6f05f5bb7d1e4746371";
 
-//changing to C or F
-
-function changeToCelsius(event) {
-  event.preventDefault();
-  celsiusLink.classList.add("active");
-  fahrenheitLink.classList.remove("active");
-  let temperatureElement = document.querySelector("#tempNum");
-  temperatureElement.innerHTML = Math.round(celTemp);
-}
-
-function changeToFahrenheit(event) {
-  event.preventDefault();
-  fahrenheitLink.classList.add("active");
-  celsiusLink.classList.remove("active");
-  let temperatureElement = document.querySelector("#tempNum");
-  temperatureElement.innerHTML = Math.round(celTemp * 1.8 + 32);
-}
-
-let celsiusLink = document.querySelector("#celsius");
-let fahrenheitLink = document.querySelector("#fahrenheit");
-
-celsiusLink.addEventListener("click", changeToCelsius);
-fahrenheitLink.addEventListener("click", changeToFahrenheit);
 
 /////
 
@@ -130,7 +107,7 @@ function showTemp(response) {
   cityElement.innerHTML = response.data.name;
   descriptionElement.innerHTML = response.data.weather[0].description;
   humidityElement.innerHTML = response.data.main.humidity;
-  windElement.innerHTML = `${Math.round(response.data.wind.speed)} km/h`;
+  windElement.innerHTML = `${Math.round(response.data.wind.speed)} m/h`;
   iconElement.setAttribute(
     "src",
     `http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`
@@ -143,9 +120,7 @@ function showTemp(response) {
   let utc = localTime + localOffset;
   let nDate = new Date(utc + 1000 * response.data.timezone);
   changeTime(nDate);
-  celsiusLink.classList.add("active");
-  fahrenheitLink.classList.remove("active");
-
+  
   getForecast(response.data.coord);
 }
 
