@@ -72,7 +72,7 @@ function changeTime(time) {
   monthElement.innerHTML = `${day} ${month} ${year}`;
 }
 
-function displayForecast() {
+function displayForecast(response) {
   let forecastElement = document.querySelector("#forecast");
   let forecastHTML = `<div class="row">`;
   let days = ["Wed", "Thu", "Fri", "Sat", "Sun"];
